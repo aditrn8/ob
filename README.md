@@ -1,3 +1,13 @@
+---
+title: OBxSinner SMC Crypto Scanner
+emoji: ⚡
+colorFrom: indigo
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # ⚡ SMC Crypto Scanner Agent (TradingView LuxAlgo Style)
 
 AI/Python Scanner otomatis untuk mendeteksi setup presisi tinggi berbasis **Smart Money Concepts (SMC)** ala indikator **LuxAlgo TradingView**:
@@ -130,6 +140,50 @@ telegram:
   send_chart_image: true        # Kirim gambar chart visual
   chart_candles_display: 60     # Jumlah candle yang ditampilkan di gambar
 ```
+
+---
+
+## 🌟 Deploy 24/7 Gratis TANPA Kartu Kredit (No Credit Card)
+
+Kalau tidak mau ribet verifikasi kartu kredit di cloud besar, gunakan **Hugging Face Spaces** atau **Render.com** (100% Gratis, Cukup Login dengan Akun GitHub!):
+
+### 🥇 Opsi 1: Hugging Face Spaces (Rekomendasi Terbaik - 16 GB RAM Gratis!)
+Hugging Face menyediakan environment Docker gratis dengan spesifikasi 2 vCPU & 16 GB RAM permanen tanpa kartu kredit.
+
+1. Buka [Hugging Face](https://huggingface.co/) dan daftar/login dengan akun GitHub kamu.
+2. Buat Space baru: Klik foto profil di kanan atas -> **New Space**.
+3. Isi form:
+   - **Space name:** `smc-crypto-agent`
+   - **License:** MIT
+   - **Select the Space SDK:** Pilih **Docker** -> pilih **Blank**.
+   - **Space hardware:** Pilih yang default (**Free - 2 vCPU, 16 GB RAM**).
+   - **Visibility:** Public (atau Private).
+   - Klik **Create Space**.
+4. Masukkan Token Telegram ke Secret Space:
+   - Masuk ke tab **Settings** di Space kamu -> scroll ke bagian **Variables and secrets**.
+   - Klik **New secret**, tambahkan:
+     - Name: `TELEGRAM_BOT_TOKEN`, Value: `<token_bot_kamu>`
+     - Name: `TELEGRAM_CHAT_ID`, Value: `<chat_id_kamu>`
+5. Hubungkan / Clone dari GitHub:
+   - Di laptop kamu, tambahkan remote Hugging Face Space kamu:
+     ```bash
+     git remote add space https://huggingface.co/spaces/<username-hf>/smc-crypto-agent
+     git push space main
+     ```
+   - Hugging Face akan otomatis mem-build Docker container dan menjalankan bot 24 jam nonstop!
+
+---
+
+### 🥈 Opsi 2: Render.com (Free Web Service - 0 Kartu Kredit)
+1. Buka [Render.com](https://render.com/) dan login menggunakan akun GitHub kamu.
+2. Klik tombol **New +** -> pilih **Web Service**.
+3. Pilih repository GitHub kamu: `aditrn8/ob`.
+4. Render akan otomatis mendeteksi Dockerfile.
+5. Pada bagian **Environment Variables**, tambahkan:
+   - `TELEGRAM_BOT_TOKEN`
+   - `TELEGRAM_CHAT_ID`
+6. Pilih plan **Free ($0/month)** lalu klik **Create Web Service**.
+7. Supaya bot tidak tertidur (sleep) setelah 15 menit, copy URL web service kamu (misal: `https://smc-agent.onrender.com`), lalu daftarkan di [UptimeRobot.com](https://uptimerobot.com/) (gratis) untuk di-ping setiap 5 menit.
 
 ---
 

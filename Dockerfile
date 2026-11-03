@@ -21,6 +21,9 @@ COPY . .
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV PORT=7860
+
+EXPOSE 7860
 
 # Run scanner daemon
 CMD ["python", "src/main.py"]

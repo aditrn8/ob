@@ -9,6 +9,8 @@ CLI usage:
 
 import sys
 import os
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 
 # Force UTF-8 stdout/stderr encoding for terminal compatibility with emojis
@@ -43,6 +45,30 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger("smc-agent")
+
+
+class HealthCheckHandler(BaseHTTPRequestHandler):
+    """Tiny HTTP server so free cloud platforms (Render, HuggingFace) stay alive 24/7."""
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        self.wfile.write(b'{"status":"ok","agent":"OBxSinner-SMC-Scanner"}')
+
+    def log_message(self, format, *args):
+        # Silence access log output to keep console clean
+        pass
+
+
+def start_health_server():
+    port = int(os.getenv("PORT", 7860))
+    try:
+        server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        logger.info(f"Healthcheck server running on http://0.0.0.0:{port}")
+    except Exception as e:
+        logger.warning(f"Could not start healthcheck server on port {port}: {e}")
 
 
 def test_telegram():
@@ -126,6 +152,7 @@ def main():
         scanner.scan_once()
         print("Done.")
     else:
+        start_health_server()
         scanner.run_forever()
 
 
