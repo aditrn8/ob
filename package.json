@@ -1,0 +1,25 @@
+{
+  "name": "smc-agent",
+  "version": "1.0.0",
+  "description": "SMC Crypto Scanner Web Agent for Bitunix Futures",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditrn8/ob.git"
+  },
+  "keywords": ["smc", "crypto", "tradingview", "bitunix", "scanner"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^1.67.0",
+    "next": "^16.4.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}
