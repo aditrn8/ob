@@ -1,0 +1,22 @@
+# SMC Crypto Scanner Configuration
+
+exchange:
+  id: "okx"                     # okx (recommended / globally accessible), binance, or bybit
+  quote: "USDT"                 # Quote asset
+  market_type: "swap"           # "swap" for USDT-M Futures, "spot" for Spot
+  top_coins_limit: 40           # Scan top 40 pairs by 24h trading volume
+  candle_limit: 250             # Historical candles per scan (for pivot & structure detection)
+
+scanner:
+  timeframes:
+    - "1h"
+    - "4h"
+  scan_interval_seconds: 180    # Interval between scanning cycles (e.g. every 3 minutes)
+  proximity_threshold_pct: 0.85 # Alert when price is within 0.85% distance to Order Block
+  cooldown_hours: 3             # Cooldown period per coin per setup to avoid duplicate spam
+  pivot_lookback: 5             # Left and right bars for swing pivot detection (LuxAlgo style)
+
+telegram:
+  enabled: true
+  send_chart_image: true        # Attach visual candlestick chart with OB zone marked
+  chart_candles_display: 60     # Number of recent candles to render on chart

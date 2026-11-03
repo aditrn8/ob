@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  smc-agent:
+    build: .
+    container_name: smc-crypto-agent
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
